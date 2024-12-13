@@ -1,14 +1,13 @@
 openapi: 3.0.3
 info:
-  title: Banking API Specification for account operations
+  title: Account Service
   description: |-
     A simple banking API that allows two operations:
     - get account balance given account number
     - deposit amount to a account 
   version: 1.0-SNAPSHOT
 servers:
-  - url: https://testenvironment.org/api/v1
-  - url: https://prodenvironment.org/api/v1
+  - url: http://www.t172.de/v1
 tags:
   - name: accounts
     description: Operations between bank accounts
@@ -27,29 +26,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
-        404:
-          description: Account not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccountNotFoundError'
-  /account/deposit:
-    post:
-      tags:
-        - accounts
-      summary: Deposit amount to account
-      description: Initiates a deposit operation of a desired amount to the account specified
-      operationId: depositToAccount
-      requestBody:
-        description: Account number and desired amount to deposit
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DepositRequest'
-        required: true
-      responses:
-        204:
-          description: Success
         404:
           description: Account not found
           content:
